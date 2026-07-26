@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Scratch output only. The handouts in examples/ and sandbox/ ARE committed
+# deliverables -- the docs reference them and CI regenerates them, so an
+# ignore rule here would leave the README pointing at absent files.
+out/
+*.tmp

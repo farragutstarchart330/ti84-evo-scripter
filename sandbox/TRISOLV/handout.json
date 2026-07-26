@@ -1,0 +1,29 @@
+{
+  "program": "TRISOLV",
+  "title": "Triangle solver (SSS / SAS / ASA)",
+  "purpose": "Pick what you know about a triangle - three sides, two sides and the angle between them, or two angles and the side between them - and the calculator returns all three sides, all three angles in degrees, the area and the perimeter.",
+  "source": "TRISOLV.py",
+  "formula": "SSS: A = acos((b^2+c^2-a^2) / 2bc)\nSAS: c = sqrt(a^2+b^2-2ab*cos C)\nASA: C = 180-A-B, a = c*sin A / sin C\nArea (Heron): s=(a+b+c)/2\n  area = sqrt(s(s-a)(s-b)(s-c))",
+  "prompts": [
+    "Mode: 1 for SSS, 2 for SAS, 3 for ASA",
+    "SSS: the three sides a, b, c",
+    "SAS: sides a and b, then angle C in DEGREES (C sits between a and b)",
+    "ASA: angles A and B in DEGREES, then side c (c sits between A and B)"
+  ],
+  "outputs": [
+    "All three sides to 3 decimals, each paired with its opposite angle in degrees",
+    "Area  = area of the triangle",
+    "Perim = a + b + c"
+  ],
+  "test_case": "TRIANGLE SOLVER\n1 SSS  2 SAS  3 ASA\nMode: [1]\na = [3]\nb = [4]\nc = [5]\na = 3.000  A = 36.870\nb = 4.000  B = 53.130\nc = 5.000  C = 90.000\nArea  = 6.000\nPerim = 12.000",
+  "quirks": [
+    "ANGLES ARE ALWAYS IN DEGREES at the prompts. Enter 45, not 0.7854.",
+    "In SAS, angle C is the one BETWEEN sides a and b. In ASA, side c is the one BETWEEN angles A and B. Get this wrong and the answer is wrong, not an error.",
+    "Sides and angles must be positive; 0 or a negative is re-prompted.",
+    "An impossible triangle is caught: sides 1, 2, 10 gives \"Not a triangle\" rather than a crash.",
+    "In ASA, two angles summing to 180 or more is rejected.",
+    "Any prompt accepts an expression or a decimal comma: 4,5 and 9/2 both work."
+  ],
+  "mode_note": "Leave the calculator's MODE alone. Python's math module always works in radians, and the MODE screen only governs TI-BASIC and the home screen - it does NOT change Python. TRISOLV takes your degrees and converts them internally with radians(), then converts answers back with degrees().",
+  "footer": "ti84-evo-scripter - verified on 7 test cases before release"
+}

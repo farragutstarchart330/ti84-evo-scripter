@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>COMPINT - TI-84 Evo reference sheet</title>
+<style>
+  @page { size: A4 portrait; margin: 11mm 12mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Segoe UI", Calibri, Arial, sans-serif;
+    font-size: 8.6pt; line-height: 1.34; color: #14181d; margin: 0;
+  }
+  header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    border-bottom: 2.5px solid #14181d; padding-bottom: 4px; margin-bottom: 8px;
+  }
+  header h1 { font-size: 17pt; margin: 0; letter-spacing: -0.3px; }
+  header h1 span { font-family: Consolas, "Courier New", monospace; }
+  header .meta { font-size: 7.6pt; color: #5b666f; text-align: right; }
+  .lead { margin: 0 0 8px; font-size: 9.2pt; }
+  .cols { display: flex; gap: 9mm; align-items: flex-start; }
+  .col { flex: 1 1 0; min-width: 0; }
+  h2 {
+    font-size: 8.2pt; text-transform: uppercase; letter-spacing: 0.9px;
+    margin: 9px 0 4px; padding-bottom: 2px; border-bottom: 1px solid #c4ccd2;
+    color: #2b3640;
+  }
+  h2:first-child { margin-top: 0; }
+  ul, ol { margin: 0 0 4px; padding-left: 15px; }
+  li { margin-bottom: 1.5px; }
+  pre {
+    font-family: Consolas, "Courier New", monospace; font-size: 7.5pt;
+    line-height: 1.28; background: #f5f7f8; border: 1px solid #d7dee3;
+    border-left: 2.5px solid #2b3640; border-radius: 2px;
+    padding: 5px 7px; margin: 0 0 5px; white-space: pre-wrap;
+    word-break: break-word; overflow-wrap: anywhere;
+  }
+  code { font-family: Consolas, "Courier New", monospace; font-size: 7.8pt; }
+  .screen {
+    font-family: Consolas, "Courier New", monospace; font-size: 8pt;
+    background: #14181d; color: #e8f0e8; border-radius: 3px;
+    padding: 6px 8px; margin: 0 0 5px; white-space: pre-wrap;
+  }
+  .screen .u { color: #7fd18a; }
+  .note {
+    background: #fff8e6; border: 1px solid #e8d9a8; border-left: 2.5px solid #c9a227;
+    border-radius: 2px; padding: 5px 7px; margin: 0 0 5px; font-size: 8.2pt;
+  }
+  .formula {
+    font-family: Consolas, "Courier New", monospace; font-size: 8.4pt;
+    background: #eef3f7; border: 1px solid #cfdbe4; border-radius: 2px;
+    padding: 5px 7px; margin: 0 0 5px; white-space: pre-wrap;
+  }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 5px; }
+  td, th { border: 1px solid #d7dee3; padding: 2.5px 5px; text-align: left; vertical-align: top; }
+  th { background: #eef2f5; font-weight: 600; }
+  footer {
+    margin-top: 9px; padding-top: 4px; border-top: 1px solid #c4ccd2;
+    font-size: 7pt; color: #6b767f; display: flex; justify-content: space-between;
+  }
+  kbd {
+    font-family: Consolas, monospace; font-size: 7.2pt; border: 1px solid #9aa6ae;
+    border-bottom-width: 2px; border-radius: 3px; padding: 0 3px; background: #fff;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><span>COMPINT</span> &mdash; Compound interest and savings</h1>
+  <div class="meta">TI-84 Evo / Evo-T &middot; Python App<br>2026-07-26</div>
+</header>
+
+<p class="lead">Two modes: grow a lump sum at a compound rate, or grow a monthly savings plan. Returns the future value, what you actually paid in, and how much of the total is growth.</p>
+
+<div class="cols">
+  <div class="col">
+
+    <h2>What it asks you</h2>
+    <ol><li>Mode: 1 for a lump sum, 2 for monthly deposits</li>
+<li>Mode 1: Principal, Rate % per year, Times/yr compounded (12 = monthly), Years</li>
+<li>Mode 2: Monthly deposit, Rate % per year, Years (always compounded monthly)</li></ol>
+
+    <h2>What it shows</h2>
+    <ul><li>FV    = future value, 2 decimals</li>
+<li>Grown = the interest part</li>
+<li>Paid  = total deposited (mode 2 only)</li></ul>
+
+    <h2>The math</h2>
+    <div class="formula">Lump sum:
+  FV = P (1 + r/100n)^(nt)
+Monthly deposits, i = r/1200, m = 12t:
+  FV = D ((1+i)^m - 1) / i
+  at r = 0:  FV = D * m</div>
+
+    <h2>Get it onto the calculator</h2>
+    <ol><li>Open <b>connectevo.ti.com</b> in Chrome (v143+) and accept the terms.</li>
+<li>Plug the calculator in with a USB-C <i>data</i> cable and switch it on.</li>
+<li>Click <b>CONNECT TO CALCULATOR</b>, pick your calculator, click <b>Connect</b>.</li>
+<li>Click <b>SEND TO CALCULATOR</b> and choose <code>COMPINT.py</code>.</li>
+<li>Check the name reads <code>COMPINT</code>, not <code>PYTHON01</code>. Send.</li></ol>
+
+    <h2>Run it</h2>
+    <p><kbd>apps</kbd> &rarr; <b>Python App</b> &rarr; highlight <code>COMPINT</code> &rarr; <b>Run</b>.
+    Answer each prompt and press <kbd>enter</kbd>.</p>
+
+    <h2>Check it works</h2>
+    <div class="screen">COMPOUND INTEREST
+1 lump sum
+2 monthly deposits
+Mode: <span class="u">1</span>
+Principal: <span class="u">1000</span>
+Rate % /yr: <span class="u">5</span>
+Times/yr: <span class="u">12</span>
+Years: <span class="u">10</span>
+FV    = 1647.01
+Grown = 647.01</div>
+
+    <h2>Good to know</h2>
+    <ul><li>Enter the rate as a PERCENT: type 5 for 5%, not 0.05.</li>
+<li>Times/yr is the compounding frequency: 1 = annually, 4 = quarterly, 12 = monthly, 365 = daily.</li>
+<li>A zero rate works in both modes. Mode 2 handles it as a special case because the annuity formula would divide by zero.</li>
+<li>Zero years returns the principal unchanged, which is correct.</li>
+<li>No currency symbol is printed - the euro sign is non-ASCII and renders badly on the calculator. The numbers are unitless, so use them for any currency.</li>
+<li>Negative amounts are rejected. Times/yr must be greater than 0.</li>
+<li>Decimal comma works: 1000,00 is accepted.</li></ul>
+
+    <div class="note">Mode does not matter. COMPINT only does arithmetic and exponentiation, so the DEGREE / RADIAN setting has no effect on it.</div>
+
+  </div>
+  <div class="col">
+
+    <h2>Source code &mdash; COMPINT.py</h2>
+    <pre># COMPINT -- compound interest and monthly-savings growth
+# TI-84 Evo / Evo-T / CE Python / 83 Premium CE Python
+#
+# Numeric output only. No CAS. Mode does not matter -- arithmetic only.
+# Enter the rate as a percentage: 5 means 5%, not 0.05.
+# No currency symbol: the euro sign is non-ASCII and renders badly.
+
+from math import *
+
+
+def getnum(msg):
+    while True:
+        s = input(msg)
+        if "," in s and "(" not in s:
+            s = s.replace(",", ".")
+        try:
+            return float(eval(s))
+        except:
+            print("Not a number")
+
+
+def getnonneg(msg):
+    while True:
+        v = getnum(msg)
+        if v &gt;= 0:
+            return v
+        print("Cannot be negative")
+
+
+print("COMPOUND INTEREST")
+print("1 lump sum")
+print("2 monthly deposits")
+
+while True:
+    m = int(getnum("Mode: "))
+    if m in (1, 2):
+        break
+    print("Pick 1 or 2")
+
+if m == 1:
+    p = getnonneg("Principal: ")
+    r = getnonneg("Rate % /yr: ")
+    while True:
+        n = getnum("Times/yr: ")
+        if n &gt; 0:
+            break
+        print("Must be &gt; 0")
+    t = getnonneg("Years: ")
+
+    fv = p * (1 + r / (100 * n)) ** (n * t)
+    print("FV    = {:.2f}".format(fv))
+    print("Grown = {:.2f}".format(fv - p))
+
+else:
+    d = getnonneg("Monthly dep: ")
+    r = getnonneg("Rate % /yr: ")
+    t = getnonneg("Years: ")
+
+    i = r / 1200
+    k = 12 * t
+    if i == 0:
+        # The annuity formula divides by i, so zero rate needs its own case.
+        fv = d * k
+    else:
+        fv = d * (((1 + i) ** k - 1) / i)
+    print("FV    = {:.2f}".format(fv))
+    print("Paid  = {:.2f}".format(d * k))
+    print("Grown = {:.2f}".format(fv - d * k))
+</pre>
+
+  </div>
+</div>
+
+<footer>
+  <span>ti84-evo-scripter - verified on 7 test cases before release</span>
+  <span>Numeric output only &middot; no CAS</span>
+</footer>
+
+</body>
+</html>

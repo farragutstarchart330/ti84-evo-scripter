@@ -1,0 +1,29 @@
+{
+  "program": "STATS1",
+  "title": "One-variable statistics",
+  "purpose": "Type a list of numbers one at a time and press enter on a blank line to finish. The calculator returns the count, sum, mean, five-number summary, IQR, range, and both standard deviations.",
+  "source": "STATS1.py",
+  "formula": "mean = sum(x) / n\nsigx = sqrt(SS / n)      population\nsx   = sqrt(SS / (n-1))  sample\n  where SS = sum (x - mean)^2\nQ1 = median of values below the median",
+  "prompts": [
+    "x1, x2, x3 ... one value per prompt, in any order",
+    "Press enter on an empty line to finish the list"
+  ],
+  "outputs": [
+    "n = how many values, sum, mean",
+    "min, Q1, med, Q3, max - the five-number summary",
+    "IQR = Q3 - Q1, and rnge = max - min",
+    "sigx = population SD, sx = sample SD"
+  ],
+  "test_case": "1-VAR STATS\nBlank line = done\nx1 = [2]\nx2 = [4]\nx3 = [5]\nx4 = [7]\nx5 = [7]\nx6 = [9]\nx7 = [12]\nx8 = [14]\nx9 = []\nn = 8\nsum  = 60.0000\nmean = 7.5000\nQ1   = 4.5000\nmed  = 7.0000\nQ3   = 10.5000\nsigx = 3.7749\nsx   = 4.0356",
+  "quirks": [
+    "An EMPTY line ends the list. Just press enter with nothing typed.",
+    "Values may be entered in any order - the program sorts them itself.",
+    "Quartiles use the same convention as the calculator's built-in 1-Var Stats: Q1 is the median of the values below the median, excluding the median itself when n is odd. Some textbooks use a different rule and will disagree slightly.",
+    "sx is the SAMPLE standard deviation (divide by n-1); sigx is the POPULATION one (divide by n). Check which your exercise wants.",
+    "With one value only, sx prints n/a - a sample SD needs at least two.",
+    "Negatives, decimals and a decimal comma all work: -3 and 2,5 are fine.",
+    "A typo prints \"Not a number\" and re-asks without losing the list so far."
+  ],
+  "mode_note": "Mode does not matter. STATS1 only does arithmetic and square roots, so the DEGREE / RADIAN setting has no effect on it.",
+  "footer": "ti84-evo-scripter - verified on 6 test cases before release"
+}

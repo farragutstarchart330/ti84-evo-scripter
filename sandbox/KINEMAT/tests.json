@@ -1,0 +1,51 @@
+{
+  "program": "KINEMAT.py",
+  "reference": "Every displacement cross-checked by two independent equations (v0*t + a*t^2/2 versus (v0+v)*t/2 or (v^2-v0^2)/2a); mode 4 time cross-checked against the quadratic root form.",
+  "cases": [
+    {
+      "name": "mode 1: free fall from rest, 3 s",
+      "inputs": ["1", "0", "9.81", "3"],
+      "expect": ["v = 29.430", "d = 44.145"],
+      "reject": ["Traceback"]
+    },
+    {
+      "name": "mode 2: 10 to 30 m/s in 4 s",
+      "inputs": ["2", "10", "30", "4"],
+      "expect": ["a = 5.000", "d = 80.000"]
+    },
+    {
+      "name": "mode 3: 0 to 20 m/s at 2 m/s2",
+      "inputs": ["3", "0", "20", "2"],
+      "expect": ["t = 10.000", "d = 100.000"]
+    },
+    {
+      "name": "mode 3: braking, negative acceleration is legal",
+      "inputs": ["3", "25", "0", "-5"],
+      "expect": ["t = 5.000", "d = 62.500"],
+      "reject": ["Cannot be 0 here", "Traceback"]
+    },
+    {
+      "name": "mode 4: v0=5, a=2, d=20",
+      "inputs": ["4", "5", "2", "20"],
+      "expect": ["v = 10.247", "t = 2.623"]
+    },
+    {
+      "name": "edge: mode 4 with no real answer",
+      "inputs": ["4", "0", "2", "-10"],
+      "expect": ["No real answer", "v0^2+2ad < 0"],
+      "reject": ["math domain error", "Traceback"]
+    },
+    {
+      "name": "edge: a=0 rejected then re-prompted",
+      "inputs": ["3", "0", "20", "0", "2"],
+      "expect": ["Cannot be 0 here", "t = 10.000", "d = 100.000"],
+      "reject": ["ZeroDivisionError", "Traceback"]
+    },
+    {
+      "name": "edge: bad mode, then decimal comma",
+      "inputs": ["7", "1", "0", "9,81", "3"],
+      "expect": ["Pick 1 to 4", "v = 29.430", "d = 44.145"],
+      "reject": ["Not a number", "Traceback"]
+    }
+  ]
+}

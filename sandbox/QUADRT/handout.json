@@ -1,0 +1,27 @@
+{
+  "program": "QUADRT",
+  "title": "Quadratic roots",
+  "purpose": "Enter the coefficients a, b, c of a*x^2 + b*x + c = 0. The calculator returns the discriminant, the vertex, and the numeric roots - handling all three discriminant cases including complex roots.",
+  "source": "QUADRT.py",
+  "formula": "D = b^2 - 4ac\nvertex x = -b / 2a\nD > 0: x = (-b +/- sqrt(D)) / 2a\nD = 0: one root x = -b / 2a\nD < 0: x = -b/2a +/- (sqrt(-D)/2|a|) i",
+  "prompts": [
+    "a = the x^2 coefficient. Zero is rejected - it would not be quadratic.",
+    "b = the x coefficient (may be 0 or negative)",
+    "c = the constant term"
+  ],
+  "outputs": [
+    "D = the discriminant, 4 decimals",
+    "vertex x = the axis of symmetry, useful for sketching",
+    "Then either two real roots, one repeated root, or the complex pair as re and im"
+  ],
+  "test_case": "QUADRATIC\na = [1]\nb = [-1]\nc = [-6]\nD = 25.0000\nvertex x = 0.5000\n2 real roots\nx1 = 3.0000\nx2 = -2.0000",
+  "quirks": [
+    "Enter a as a non-zero number. Type 0 and it says \"a cannot be 0\" and asks again.",
+    "Any prompt accepts an expression or a decimal comma: -1,5 and 3/2 and 6*pi all work.",
+    "For D < 0 the roots are read as re +/- im i. Example: re = 0.0000, im = +/-1.0000 means x = +i and -i.",
+    "Watch the signs: for x^2 - x - 6 enter b as -1 and c as -6, not 1 and 6.",
+    "Numeric roots only, no CAS: this prints numbers, it does not factor or rearrange. Permitted for the TI-84 family under the ACT calculator policy."
+  ],
+  "mode_note": "Mode does not matter. QUADRT only does arithmetic and one square root, so the DEGREE / RADIAN setting has no effect on it.",
+  "footer": "ti84-evo-scripter - verified on 7 test cases before release"
+}

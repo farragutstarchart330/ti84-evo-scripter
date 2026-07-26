@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>STATS1 - TI-84 Evo reference sheet</title>
+<style>
+  @page { size: A4 portrait; margin: 11mm 12mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Segoe UI", Calibri, Arial, sans-serif;
+    font-size: 8.6pt; line-height: 1.34; color: #14181d; margin: 0;
+  }
+  header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    border-bottom: 2.5px solid #14181d; padding-bottom: 4px; margin-bottom: 8px;
+  }
+  header h1 { font-size: 17pt; margin: 0; letter-spacing: -0.3px; }
+  header h1 span { font-family: Consolas, "Courier New", monospace; }
+  header .meta { font-size: 7.6pt; color: #5b666f; text-align: right; }
+  .lead { margin: 0 0 8px; font-size: 9.2pt; }
+  .cols { display: flex; gap: 9mm; align-items: flex-start; }
+  .col { flex: 1 1 0; min-width: 0; }
+  h2 {
+    font-size: 8.2pt; text-transform: uppercase; letter-spacing: 0.9px;
+    margin: 9px 0 4px; padding-bottom: 2px; border-bottom: 1px solid #c4ccd2;
+    color: #2b3640;
+  }
+  h2:first-child { margin-top: 0; }
+  ul, ol { margin: 0 0 4px; padding-left: 15px; }
+  li { margin-bottom: 1.5px; }
+  pre {
+    font-family: Consolas, "Courier New", monospace; font-size: 7.5pt;
+    line-height: 1.28; background: #f5f7f8; border: 1px solid #d7dee3;
+    border-left: 2.5px solid #2b3640; border-radius: 2px;
+    padding: 5px 7px; margin: 0 0 5px; white-space: pre-wrap;
+    word-break: break-word; overflow-wrap: anywhere;
+  }
+  code { font-family: Consolas, "Courier New", monospace; font-size: 7.8pt; }
+  .screen {
+    font-family: Consolas, "Courier New", monospace; font-size: 8pt;
+    background: #14181d; color: #e8f0e8; border-radius: 3px;
+    padding: 6px 8px; margin: 0 0 5px; white-space: pre-wrap;
+  }
+  .screen .u { color: #7fd18a; }
+  .note {
+    background: #fff8e6; border: 1px solid #e8d9a8; border-left: 2.5px solid #c9a227;
+    border-radius: 2px; padding: 5px 7px; margin: 0 0 5px; font-size: 8.2pt;
+  }
+  .formula {
+    font-family: Consolas, "Courier New", monospace; font-size: 8.4pt;
+    background: #eef3f7; border: 1px solid #cfdbe4; border-radius: 2px;
+    padding: 5px 7px; margin: 0 0 5px; white-space: pre-wrap;
+  }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 5px; }
+  td, th { border: 1px solid #d7dee3; padding: 2.5px 5px; text-align: left; vertical-align: top; }
+  th { background: #eef2f5; font-weight: 600; }
+  footer {
+    margin-top: 9px; padding-top: 4px; border-top: 1px solid #c4ccd2;
+    font-size: 7pt; color: #6b767f; display: flex; justify-content: space-between;
+  }
+  kbd {
+    font-family: Consolas, monospace; font-size: 7.2pt; border: 1px solid #9aa6ae;
+    border-bottom-width: 2px; border-radius: 3px; padding: 0 3px; background: #fff;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><span>STATS1</span> &mdash; One-variable statistics</h1>
+  <div class="meta">TI-84 Evo / Evo-T &middot; Python App<br>2026-07-26</div>
+</header>
+
+<p class="lead">Type a list of numbers one at a time and press enter on a blank line to finish. The calculator returns the count, sum, mean, five-number summary, IQR, range, and both standard deviations.</p>
+
+<div class="cols">
+  <div class="col">
+
+    <h2>What it asks you</h2>
+    <ol><li>x1, x2, x3 ... one value per prompt, in any order</li>
+<li>Press enter on an empty line to finish the list</li></ol>
+
+    <h2>What it shows</h2>
+    <ul><li>n = how many values, sum, mean</li>
+<li>min, Q1, med, Q3, max - the five-number summary</li>
+<li>IQR = Q3 - Q1, and rnge = max - min</li>
+<li>sigx = population SD, sx = sample SD</li></ul>
+
+    <h2>The math</h2>
+    <div class="formula">mean = sum(x) / n
+sigx = sqrt(SS / n)      population
+sx   = sqrt(SS / (n-1))  sample
+  where SS = sum (x - mean)^2
+Q1 = median of values below the median</div>
+
+    <h2>Get it onto the calculator</h2>
+    <ol><li>Open <b>connectevo.ti.com</b> in Chrome (v143+) and accept the terms.</li>
+<li>Plug the calculator in with a USB-C <i>data</i> cable and switch it on.</li>
+<li>Click <b>CONNECT TO CALCULATOR</b>, pick your calculator, click <b>Connect</b>.</li>
+<li>Click <b>SEND TO CALCULATOR</b> and choose <code>STATS1.py</code>.</li>
+<li>Check the name reads <code>STATS1</code>, not <code>PYTHON01</code>. Send.</li></ol>
+
+    <h2>Run it</h2>
+    <p><kbd>apps</kbd> &rarr; <b>Python App</b> &rarr; highlight <code>STATS1</code> &rarr; <b>Run</b>.
+    Answer each prompt and press <kbd>enter</kbd>.</p>
+
+    <h2>Check it works</h2>
+    <div class="screen">1-VAR STATS
+Blank line = done
+x1 = <span class="u">2</span>
+x2 = <span class="u">4</span>
+x3 = <span class="u">5</span>
+x4 = <span class="u">7</span>
+x5 = <span class="u">7</span>
+x6 = <span class="u">9</span>
+x7 = <span class="u">12</span>
+x8 = <span class="u">14</span>
+x9 = <span class="u"></span>
+n = 8
+sum  = 60.0000
+mean = 7.5000
+Q1   = 4.5000
+med  = 7.0000
+Q3   = 10.5000
+sigx = 3.7749
+sx   = 4.0356</div>
+
+    <h2>Good to know</h2>
+    <ul><li>An EMPTY line ends the list. Just press enter with nothing typed.</li>
+<li>Values may be entered in any order - the program sorts them itself.</li>
+<li>Quartiles use the same convention as the calculator's built-in 1-Var Stats: Q1 is the median of the values below the median, excluding the median itself when n is odd. Some textbooks use a different rule and will disagree slightly.</li>
+<li>sx is the SAMPLE standard deviation (divide by n-1); sigx is the POPULATION one (divide by n). Check which your exercise wants.</li>
+<li>With one value only, sx prints n/a - a sample SD needs at least two.</li>
+<li>Negatives, decimals and a decimal comma all work: -3 and 2,5 are fine.</li>
+<li>A typo prints "Not a number" and re-asks without losing the list so far.</li></ul>
+
+    <div class="note">Mode does not matter. STATS1 only does arithmetic and square roots, so the DEGREE / RADIAN setting has no effect on it.</div>
+
+  </div>
+  <div class="col">
+
+    <h2>Source code &mdash; STATS1.py</h2>
+    <pre># STATS1 -- one-variable statistics from a typed list
+# TI-84 Evo / Evo-T / CE Python / 83 Premium CE Python
+#
+# Numeric output only. No CAS. Mode does not matter -- arithmetic only.
+#
+# Quartiles use the TI-84 convention (Moore &amp; McCabe): Q1 is the median
+# of the values strictly below the median, excluding the median itself
+# when n is odd. This matches the calculator's own 1-Var Stats.
+
+from math import *
+
+
+def getval(msg):
+    """Return a number, or None when the user presses enter on a blank line."""
+    while True:
+        s = input(msg)
+        if s == "":
+            return None
+        if "," in s and "(" not in s:
+            s = s.replace(",", ".")
+        try:
+            return float(eval(s))
+        except:
+            print("Not a number")
+
+
+def med(v):
+    n = len(v)
+    h = n // 2
+    if n % 2 == 1:
+        return v[h]
+    return (v[h - 1] + v[h]) / 2
+
+
+print("1-VAR STATS")
+print("Blank line = done")
+
+x = []
+while True:
+    v = getval("x{} = ".format(len(x) + 1))
+    if v is None:
+        break
+    x.append(v)
+
+n = len(x)
+if n == 0:
+    print("No data")
+else:
+    x = sorted(x)
+    tot = sum(x)
+    mean = tot / n
+    h = n // 2
+    if n == 1:
+        # h is 0, so x[:0] and x[1:] are both empty and med() would
+        # index off the end. With one value the quartiles are that value.
+        q1 = x[0]
+        q3 = x[0]
+    else:
+        q1 = med(x[:h])
+        q3 = med(x[n - h:])
+    print("n = {}".format(n))
+    print("sum  = {:.4f}".format(tot))
+    print("mean = {:.4f}".format(mean))
+    print("min  = {:.4f}".format(x[0]))
+    print("Q1   = {:.4f}".format(q1))
+    print("med  = {:.4f}".format(med(x)))
+    print("Q3   = {:.4f}".format(q3))
+    print("max  = {:.4f}".format(x[-1]))
+    print("IQR  = {:.4f}".format(q3 - q1))
+    print("rnge = {:.4f}".format(x[-1] - x[0]))
+
+    ss = 0.0
+    for v in x:
+        ss = ss + (v - mean) ** 2
+    print("sigx = {:.4f}".format(sqrt(ss / n)))
+    if n &gt; 1:
+        print("sx   = {:.4f}".format(sqrt(ss / (n - 1))))
+    else:
+        print("sx   = n/a")
+</pre>
+
+  </div>
+</div>
+
+<footer>
+  <span>ti84-evo-scripter - verified on 6 test cases before release</span>
+  <span>Numeric output only &middot; no CAS</span>
+</footer>
+
+</body>
+</html>

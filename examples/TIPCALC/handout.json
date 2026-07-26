@@ -1,0 +1,25 @@
+{
+  "program": "TIPCALC",
+  "title": "Tip and total",
+  "purpose": "Enter a bill amount and a tip percentage; the calculator returns the tip and the grand total, both rounded to two decimals.",
+  "source": "TIPCALC.py",
+  "formula": "tip   = bill * pct / 100\ntotal = bill + tip",
+  "prompts": [
+    "Bill amount: the pre-tip total, e.g. 48.50",
+    "Tip percent: the percentage as a whole number, e.g. 18 (not 0.18)"
+  ],
+  "outputs": [
+    "Tip:   the tip on its own, 2 decimals",
+    "Total: bill + tip, 2 decimals"
+  ],
+  "test_case": "TIP CALCULATOR\nBill amount: [48.50]\nTip percent: [18]\nTip:   8.73\nTotal: 57.23",
+  "quirks": [
+    "Any prompt accepts an expression, not just a decimal: type 40+8.50 to split a bill, or 6*pi where that makes sense.",
+    "Enter the tip as 18, not 0.18. The program divides by 100 for you.",
+    "Type anything that is not a number and it prints \"Not a number\" and asks again - nothing crashes.",
+    "A zero bill is valid and returns 0.00 / 0.00.",
+    "Numeric output only, no CAS: permitted for the TI-84 family under the ACT calculator policy. Note that European exam mode disables user programs while it is active."
+  ],
+  "mode_note": "Mode does not matter. TIPCALC only does arithmetic, so the DEGREE / RADIAN setting has no effect on it. (For reference: Python's math module is always in radians regardless of the MODE screen, which governs TI-BASIC only.)",
+  "footer": "ti84-evo-scripter - verified on 5 test cases before release"
+}

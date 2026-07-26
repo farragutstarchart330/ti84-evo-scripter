@@ -1,0 +1,190 @@
+{
+  "skill": "ti84-evo-scripter",
+  "version": "1.2.0",
+  "description": "Behavioural checks for the TI-84 Evo scripter skill. Each case states a prompt, what the agent must do, and what would count as a failure.",
+  "cases": [
+    {
+      "id": "triggers-on-plain-request",
+      "prompt": "Make me a program called TIPCALC for my TI-84 Evo that asks for a bill amount and a tip percentage, then shows the tip and the total.",
+      "must": [
+        "writes a real TIPCALC.py file to disk",
+        "runs scripts/lint_ti_python.py and reports it clean",
+        "runs scripts/verify_program.py with at least 3 cases including an edge case, and pastes the real output",
+        "shows the full source inline in the reply",
+        "states that mode does not matter because the program is arithmetic only",
+        "gives TI Connect Evo upload steps naming connectevo.ti.com",
+        "gives one concrete test input with exact expected screen output"
+      ],
+      "must_not": [
+        "uses an f-string anywhere in the program",
+        "claims the calculator cannot accept uploaded files",
+        "hands over a .8xv or .8xp2 file"
+      ]
+    },
+    {
+      "id": "rejects-illegal-program-name",
+      "prompt": "Write me MYTIPCALCULATOR for the Evo that converts euros to dollars.",
+      "must": [
+        "shortens the name to 8 characters or fewer, first character a letter",
+        "says in one line why it renamed it",
+        "notes that an illegal name is silently renamed to PYTHON01 by TI Connect"
+      ],
+      "must_not": ["ships a file named MYTIPCALCULATOR.py"]
+    },
+    {
+      "id": "trig-mode-statement",
+      "prompt": "TRIANGLE for my Evo: give it two sides and the included angle in degrees, return the area.",
+      "must": [
+        "converts the degree input with radians() inside the program",
+        "states that Python's math module is always radians and the MODE screen does not affect Python",
+        "verifies against a known case such as 3, 4, 90 degrees -> 6.00"
+      ],
+      "must_not": [
+        "tells the user to switch the calculator to DEGREE mode for the Python program to work"
+      ]
+    },
+    {
+      "id": "refuses-cas",
+      "prompt": "Write me a program that factors any quadratic and shows the algebraic steps.",
+      "must": [
+        "declines the symbolic/step-by-step form and says why in a sentence",
+        "offers the numeric alternative: prompt for a, b, c and print the numeric roots",
+        "delivers that numeric version rather than stopping"
+      ],
+      "must_not": ["produces symbolic factoring output"]
+    },
+    {
+      "id": "asks-about-transfer-path",
+      "prompt": "I don't have my USB cable with me. Can I still get a program on my Evo-T?",
+      "must": [
+        "confirms yes, by typing it directly in the Python App",
+        "offers a shortened variant suited to hand-typing",
+        "does not claim the calculator cannot receive programs"
+      ]
+    },
+    {
+      "id": "no-unverified-test-claims",
+      "prompt": "Write CONVERT for the Evo: Celsius to Fahrenheit.",
+      "must": [
+        "actually executes verify_program.py rather than asserting the tests pass",
+        "pastes the tool's real output including the pass count"
+      ],
+      "must_not": ["says 'all tests pass' without any command output"]
+    }
+  ],
+  "cases_v1_1": [
+    {
+      "id": "refuses-model-without-python",
+      "prompt": "Write me a TIPCALC for my TI-84 Plus T.",
+      "must": [
+        "states that the TI-84 Plus T has no Python App",
+        "offers the two real options: a Python-capable model, or TI-BASIC which this skill does not cover",
+        "does not deliver a .py file for it"
+      ]
+    },
+    {
+      "id": "asks-for-target-model",
+      "prompt": "Make me a program that converts Celsius to Fahrenheit.",
+      "must": [
+        "asks which calculator model, or states the assumed target explicitly",
+        "passes --target to the check scripts"
+      ]
+    },
+    {
+      "id": "narrow-screen-model",
+      "prompt": "BILLSPLT for my TI-82 Advanced Edition Python: total and number of people, show each share.",
+      "must": [
+        "simulates with --target 82aep",
+        "keeps printed labels short enough for the ~16 column screen",
+        "does not use ti_hub, ti_rover or graphics modules"
+      ]
+    },
+    {
+      "id": "decimal-comma-guard",
+      "prompt": "Make me a VAT calculator for my Evo-T. I'm in Belgium.",
+      "must": [
+        "includes the decimal-comma guard in getnum()",
+        "includes a test case entering a value with a comma",
+        "mentions in the input quirks that a comma works"
+      ]
+    },
+    {
+      "id": "degraded-prerequisite-continues",
+      "prompt": "Make me a TIPCALC. (Assume no Chrome or Edge is installed.)",
+      "must": [
+        "runs preflight and reports the degraded capability",
+        "still delivers the .py and the HTML handout",
+        "tells the user to print the HTML to PDF"
+      ],
+      "must_not": ["stops without delivering because PDF export was unavailable"]
+    },
+    {
+      "id": "loops-until-checks-pass",
+      "prompt": "TRIANGLE for my Evo: two sides and the included angle in degrees, return the area.",
+      "must": [
+        "runs run_checks.py",
+        "if a stage fails, edits the program and re-runs rather than delivering",
+        "ends with ALL CHECKS PASSED before delivering",
+        "wraps the degree input in radians()"
+      ],
+      "must_not": [
+        "changes an expected test value to match a wrong result",
+        "delivers while the gate still reports a failure"
+      ]
+    },
+    {
+      "id": "correct-connect-app-per-family",
+      "prompt": "How do I get this onto my TI-83 Premium CE Edition Python?",
+      "must": ["names TI Connect CE, not TI Connect Evo"],
+      "must_not": ["tells the user to open connectevo.ti.com"]
+    }
+  ],
+  "tooling_checks": [
+    {
+      "id": "lint-clean-example",
+      "command": "python scripts/lint_ti_python.py examples/TIPCALC/TIPCALC.py",
+      "expect_exit": 0
+    },
+    {
+      "id": "verify-example",
+      "command": "python scripts/verify_program.py --program examples/TIPCALC/TIPCALC.py --tests examples/TIPCALC/tests.json",
+      "expect_exit": 0,
+      "expect_stdout_contains": "6/6 passed"
+    },
+    {
+      "id": "handout-builds",
+      "command": "python scripts/make_handout.py --spec examples/TIPCALC/handout.json --out examples/TIPCALC/TIPCALC-handout.pdf",
+      "expect_exit": 0,
+      "expect_stdout_contains": "HTML written"
+    },
+    {
+      "id": "preflight-ready",
+      "command": "python scripts/preflight.py --target evo-t",
+      "expect_exit": 0
+    },
+    {
+      "id": "gate-passes-example",
+      "command": "python scripts/run_checks.py --program examples/TIPCALC/TIPCALC.py --tests examples/TIPCALC/tests.json --target evo-t",
+      "expect_exit": 0,
+      "expect_stdout_contains": "ALL CHECKS PASSED"
+    },
+    {
+      "id": "gate-refuses-non-python-model",
+      "command": "python scripts/run_checks.py --program examples/TIPCALC/TIPCALC.py --tests examples/TIPCALC/tests.json --target 84t",
+      "expect_exit": 2,
+      "expect_stderr_contains": "has no Python App"
+    },
+    {
+      "id": "sandbox-blocks-desktop-only-import",
+      "command": "python scripts/simulate_ti84.py --program evals/fixtures/BADIMP.py --target evo --json",
+      "expect_exit": 1,
+      "expect_stdout_contains": "no module named 'statistics'"
+    },
+    {
+      "id": "example-passes-on-every-python-target",
+      "command": "for m in evo evo-t ce-python ce-t-python 83pce-python 82aep; do python scripts/run_checks.py --program examples/TIPCALC/TIPCALC.py --tests examples/TIPCALC/tests.json --target $m || exit 1; done",
+      "expect_exit": 0,
+      "shell": true
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "program": "STATS1.py",
+  "reference": "Sum of squared deviations cross-checked two-pass vs sum-of-squares identity (both 114.0). Quartiles follow the TI-84 / Moore-McCabe convention.",
+  "cases": [
+    {
+      "name": "eight values 2,4,5,7,7,9,12,14",
+      "inputs": ["2", "4", "5", "7", "7", "9", "12", "14", ""],
+      "expect": ["n = 8", "sum  = 60.0000", "mean = 7.5000",
+                 "min  = 2.0000", "Q1   = 4.5000", "med  = 7.0000",
+                 "Q3   = 10.5000", "max  = 14.0000", "IQR  = 6.0000",
+                 "rnge = 12.0000", "sigx = 3.7749", "sx   = 4.0356"],
+      "reject": ["Traceback", "No data"]
+    },
+    {
+      "name": "odd n excludes the median from both halves",
+      "inputs": ["1", "2", "3", "4", "5", ""],
+      "expect": ["n = 5", "mean = 3.0000", "Q1   = 1.5000",
+                 "med  = 3.0000", "Q3   = 4.5000", "IQR  = 3.0000"],
+      "reject": ["Traceback"]
+    },
+    {
+      "name": "negative and decimal values",
+      "inputs": ["-3", "-1", "0", "2.5", ""],
+      "expect": ["n = 4", "sum  = -1.5000", "mean = -0.3750",
+                 "min  = -3.0000", "max  = 2.5000"],
+      "reject": ["Traceback"]
+    },
+    {
+      "name": "edge: single value, sample SD undefined",
+      "inputs": ["42", ""],
+      "expect": ["n = 1", "mean = 42.0000", "sigx = 0.0000", "sx   = n/a"],
+      "reject": ["Traceback", "ZeroDivisionError"]
+    },
+    {
+      "name": "edge: no data at all",
+      "inputs": [""],
+      "expect": ["No data"],
+      "reject": ["Traceback", "mean"]
+    },
+    {
+      "name": "edge: decimal comma and a typo mid-list",
+      "inputs": ["1,5", "oops", "2,5", "3", ""],
+      "expect": ["Not a number", "n = 3", "sum  = 7.0000",
+                 "mean = 2.3333"],
+      "reject": ["Traceback"]
+    }
+  ]
+}

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>TRISOLV - TI-84 Evo reference sheet</title>
+<style>
+  @page { size: A4 portrait; margin: 11mm 12mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Segoe UI", Calibri, Arial, sans-serif;
+    font-size: 8.6pt; line-height: 1.34; color: #14181d; margin: 0;
+  }
+  header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    border-bottom: 2.5px solid #14181d; padding-bottom: 4px; margin-bottom: 8px;
+  }
+  header h1 { font-size: 17pt; margin: 0; letter-spacing: -0.3px; }
+  header h1 span { font-family: Consolas, "Courier New", monospace; }
+  header .meta { font-size: 7.6pt; color: #5b666f; text-align: right; }
+  .lead { margin: 0 0 8px; font-size: 9.2pt; }
+  .cols { display: flex; gap: 9mm; align-items: flex-start; }
+  .col { flex: 1 1 0; min-width: 0; }
+  h2 {
+    font-size: 8.2pt; text-transform: uppercase; letter-spacing: 0.9px;
+    margin: 9px 0 4px; padding-bottom: 2px; border-bottom: 1px solid #c4ccd2;
+    color: #2b3640;
+  }
+  h2:first-child { margin-top: 0; }
+  ul, ol { margin: 0 0 4px; padding-left: 15px; }
+  li { margin-bottom: 1.5px; }
+  pre {
+    font-family: Consolas, "Courier New", monospace; font-size: 7.5pt;
+    line-height: 1.28; background: #f5f7f8; border: 1px solid #d7dee3;
+    border-left: 2.5px solid #2b3640; border-radius: 2px;
+    padding: 5px 7px; margin: 0 0 5px; white-space: pre-wrap;
+    word-break: break-word; overflow-wrap: anywhere;
+  }
+  code { font-family: Consolas, "Courier New", monospace; font-size: 7.8pt; }
+  .screen {
+    font-family: Consolas, "Courier New", monospace; font-size: 8pt;
+    background: #14181d; color: #e8f0e8; border-radius: 3px;
+    padding: 6px 8px; margin: 0 0 5px; white-space: pre-wrap;
+  }
+  .screen .u { color: #7fd18a; }
+  .note {
+    background: #fff8e6; border: 1px solid #e8d9a8; border-left: 2.5px solid #c9a227;
+    border-radius: 2px; padding: 5px 7px; margin: 0 0 5px; font-size: 8.2pt;
+  }
+  .formula {
+    font-family: Consolas, "Courier New", monospace; font-size: 8.4pt;
+    background: #eef3f7; border: 1px solid #cfdbe4; border-radius: 2px;
+    padding: 5px 7px; margin: 0 0 5px; white-space: pre-wrap;
+  }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 5px; }
+  td, th { border: 1px solid #d7dee3; padding: 2.5px 5px; text-align: left; vertical-align: top; }
+  th { background: #eef2f5; font-weight: 600; }
+  footer {
+    margin-top: 9px; padding-top: 4px; border-top: 1px solid #c4ccd2;
+    font-size: 7pt; color: #6b767f; display: flex; justify-content: space-between;
+  }
+  kbd {
+    font-family: Consolas, monospace; font-size: 7.2pt; border: 1px solid #9aa6ae;
+    border-bottom-width: 2px; border-radius: 3px; padding: 0 3px; background: #fff;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><span>TRISOLV</span> &mdash; Triangle solver (SSS / SAS / ASA)</h1>
+  <div class="meta">TI-84 Evo / Evo-T &middot; Python App<br>2026-07-26</div>
+</header>
+
+<p class="lead">Pick what you know about a triangle - three sides, two sides and the angle between them, or two angles and the side between them - and the calculator returns all three sides, all three angles in degrees, the area and the perimeter.</p>
+
+<div class="cols">
+  <div class="col">
+
+    <h2>What it asks you</h2>
+    <ol><li>Mode: 1 for SSS, 2 for SAS, 3 for ASA</li>
+<li>SSS: the three sides a, b, c</li>
+<li>SAS: sides a and b, then angle C in DEGREES (C sits between a and b)</li>
+<li>ASA: angles A and B in DEGREES, then side c (c sits between A and B)</li></ol>
+
+    <h2>What it shows</h2>
+    <ul><li>All three sides to 3 decimals, each paired with its opposite angle in degrees</li>
+<li>Area  = area of the triangle</li>
+<li>Perim = a + b + c</li></ul>
+
+    <h2>The math</h2>
+    <div class="formula">SSS: A = acos((b^2+c^2-a^2) / 2bc)
+SAS: c = sqrt(a^2+b^2-2ab*cos C)
+ASA: C = 180-A-B, a = c*sin A / sin C
+Area (Heron): s=(a+b+c)/2
+  area = sqrt(s(s-a)(s-b)(s-c))</div>
+
+    <h2>Get it onto the calculator</h2>
+    <ol><li>Open <b>connectevo.ti.com</b> in Chrome (v143+) and accept the terms.</li>
+<li>Plug the calculator in with a USB-C <i>data</i> cable and switch it on.</li>
+<li>Click <b>CONNECT TO CALCULATOR</b>, pick your calculator, click <b>Connect</b>.</li>
+<li>Click <b>SEND TO CALCULATOR</b> and choose <code>TRISOLV.py</code>.</li>
+<li>Check the name reads <code>TRISOLV</code>, not <code>PYTHON01</code>. Send.</li></ol>
+
+    <h2>Run it</h2>
+    <p><kbd>apps</kbd> &rarr; <b>Python App</b> &rarr; highlight <code>TRISOLV</code> &rarr; <b>Run</b>.
+    Answer each prompt and press <kbd>enter</kbd>.</p>
+
+    <h2>Check it works</h2>
+    <div class="screen">TRIANGLE SOLVER
+1 SSS  2 SAS  3 ASA
+Mode: <span class="u">1</span>
+a = <span class="u">3</span>
+b = <span class="u">4</span>
+c = <span class="u">5</span>
+a = 3.000  A = 36.870
+b = 4.000  B = 53.130
+c = 5.000  C = 90.000
+Area  = 6.000
+Perim = 12.000</div>
+
+    <h2>Good to know</h2>
+    <ul><li>ANGLES ARE ALWAYS IN DEGREES at the prompts. Enter 45, not 0.7854.</li>
+<li>In SAS, angle C is the one BETWEEN sides a and b. In ASA, side c is the one BETWEEN angles A and B. Get this wrong and the answer is wrong, not an error.</li>
+<li>Sides and angles must be positive; 0 or a negative is re-prompted.</li>
+<li>An impossible triangle is caught: sides 1, 2, 10 gives "Not a triangle" rather than a crash.</li>
+<li>In ASA, two angles summing to 180 or more is rejected.</li>
+<li>Any prompt accepts an expression or a decimal comma: 4,5 and 9/2 both work.</li></ul>
+
+    <div class="note">Leave the calculator's MODE alone. Python's math module always works in radians, and the MODE screen only governs TI-BASIC and the home screen - it does NOT change Python. TRISOLV takes your degrees and converts them internally with radians(), then converts answers back with degrees().</div>
+
+  </div>
+  <div class="col">
+
+    <h2>Source code &mdash; TRISOLV.py</h2>
+    <pre># TRISOLV -- triangle solver: SSS, SAS, ASA
+# TI-84 Evo / Evo-T / CE Python / 83 Premium CE Python
+#
+# Numeric output only. No CAS.
+# ANGLES ARE IN DEGREES at every prompt. Python's math module is always
+# in radians, so this program converts with radians() internally. The
+# calculator's MODE setting does not affect Python -- leave it alone.
+
+from math import *
+
+
+def getnum(msg):
+    while True:
+        s = input(msg)
+        if "," in s and "(" not in s:
+            s = s.replace(",", ".")
+        try:
+            return float(eval(s))
+        except:
+            print("Not a number")
+
+
+def getpos(msg):
+    while True:
+        v = getnum(msg)
+        if v &gt; 0:
+            return v
+        print("Must be &gt; 0")
+
+
+def show(a, b, c, A, B, C):
+    print("a = {:.3f}  A = {:.3f}".format(a, A))
+    print("b = {:.3f}  B = {:.3f}".format(b, B))
+    print("c = {:.3f}  C = {:.3f}".format(c, C))
+    s = (a + b + c) / 2
+    area = sqrt(s * (s - a) * (s - b) * (s - c))
+    print("Area  = {:.3f}".format(area))
+    print("Perim = {:.3f}".format(a + b + c))
+
+
+print("TRIANGLE SOLVER")
+print("1 SSS  2 SAS  3 ASA")
+
+while True:
+    m = int(getnum("Mode: "))
+    if m in (1, 2, 3):
+        break
+    print("Pick 1, 2 or 3")
+
+if m == 1:
+    a = getpos("a = ")
+    b = getpos("b = ")
+    c = getpos("c = ")
+    if a + b &lt;= c or a + c &lt;= b or b + c &lt;= a:
+        print("Not a triangle")
+    else:
+        A = degrees(acos((b * b + c * c - a * a) / (2 * b * c)))
+        B = degrees(acos((a * a + c * c - b * b) / (2 * a * c)))
+        show(a, b, c, A, B, 180 - A - B)
+
+elif m == 2:
+    a = getpos("a = ")
+    b = getpos("b = ")
+    C = getpos("angle C (deg) = ")
+    if C &gt;= 180:
+        print("Angle must be &lt; 180")
+    else:
+        c = sqrt(a * a + b * b - 2 * a * b * cos(radians(C)))
+        A = degrees(acos((b * b + c * c - a * a) / (2 * b * c)))
+        show(a, b, c, A, 180 - A - C, C)
+
+else:
+    A = getpos("angle A (deg) = ")
+    B = getpos("angle B (deg) = ")
+    c = getpos("side c = ")
+    if A + B &gt;= 180:
+        print("A + B must be &lt; 180")
+    else:
+        C = 180 - A - B
+        k = c / sin(radians(C))
+        show(k * sin(radians(A)), k * sin(radians(B)), c, A, B, C)
+</pre>
+
+  </div>
+</div>
+
+<footer>
+  <span>ti84-evo-scripter - verified on 7 test cases before release</span>
+  <span>Numeric output only &middot; no CAS</span>
+</footer>
+
+</body>
+</html>

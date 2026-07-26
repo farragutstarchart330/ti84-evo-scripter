@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KINEMAT - TI-84 Evo reference sheet</title>
+<style>
+  @page { size: A4 portrait; margin: 11mm 12mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Segoe UI", Calibri, Arial, sans-serif;
+    font-size: 8.6pt; line-height: 1.34; color: #14181d; margin: 0;
+  }
+  header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    border-bottom: 2.5px solid #14181d; padding-bottom: 4px; margin-bottom: 8px;
+  }
+  header h1 { font-size: 17pt; margin: 0; letter-spacing: -0.3px; }
+  header h1 span { font-family: Consolas, "Courier New", monospace; }
+  header .meta { font-size: 7.6pt; color: #5b666f; text-align: right; }
+  .lead { margin: 0 0 8px; font-size: 9.2pt; }
+  .cols { display: flex; gap: 9mm; align-items: flex-start; }
+  .col { flex: 1 1 0; min-width: 0; }
+  h2 {
+    font-size: 8.2pt; text-transform: uppercase; letter-spacing: 0.9px;
+    margin: 9px 0 4px; padding-bottom: 2px; border-bottom: 1px solid #c4ccd2;
+    color: #2b3640;
+  }
+  h2:first-child { margin-top: 0; }
+  ul, ol { margin: 0 0 4px; padding-left: 15px; }
+  li { margin-bottom: 1.5px; }
+  pre {
+    font-family: Consolas, "Courier New", monospace; font-size: 7.5pt;
+    line-height: 1.28; background: #f5f7f8; border: 1px solid #d7dee3;
+    border-left: 2.5px solid #2b3640; border-radius: 2px;
+    padding: 5px 7px; margin: 0 0 5px; white-space: pre-wrap;
+    word-break: break-word; overflow-wrap: anywhere;
+  }
+  code { font-family: Consolas, "Courier New", monospace; font-size: 7.8pt; }
+  .screen {
+    font-family: Consolas, "Courier New", monospace; font-size: 8pt;
+    background: #14181d; color: #e8f0e8; border-radius: 3px;
+    padding: 6px 8px; margin: 0 0 5px; white-space: pre-wrap;
+  }
+  .screen .u { color: #7fd18a; }
+  .note {
+    background: #fff8e6; border: 1px solid #e8d9a8; border-left: 2.5px solid #c9a227;
+    border-radius: 2px; padding: 5px 7px; margin: 0 0 5px; font-size: 8.2pt;
+  }
+  .formula {
+    font-family: Consolas, "Courier New", monospace; font-size: 8.4pt;
+    background: #eef3f7; border: 1px solid #cfdbe4; border-radius: 2px;
+    padding: 5px 7px; margin: 0 0 5px; white-space: pre-wrap;
+  }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 5px; }
+  td, th { border: 1px solid #d7dee3; padding: 2.5px 5px; text-align: left; vertical-align: top; }
+  th { background: #eef2f5; font-weight: 600; }
+  footer {
+    margin-top: 9px; padding-top: 4px; border-top: 1px solid #c4ccd2;
+    font-size: 7pt; color: #6b767f; display: flex; justify-content: space-between;
+  }
+  kbd {
+    font-family: Consolas, monospace; font-size: 7.2pt; border: 1px solid #9aa6ae;
+    border-bottom-width: 2px; border-radius: 3px; padding: 0 3px; background: #fff;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><span>KINEMAT</span> &mdash; Constant-acceleration solver</h1>
+  <div class="meta">TI-84 Evo / Evo-T &middot; Python App<br>2026-07-26</div>
+</header>
+
+<p class="lead">Constant-acceleration motion has five quantities: v0, v, a, t and d. Tell the calculator which three you know and it returns the other two - so you never have to work out which equation to reach for.</p>
+
+<div class="cols">
+  <div class="col">
+
+    <h2>What it asks you</h2>
+    <ol><li>Mode: 1 to 4, matching which three quantities you know</li>
+<li>v0 (m/s) initial velocity - always asked</li>
+<li>Then the other two knowns for that mode</li></ol>
+
+    <h2>What it shows</h2>
+    <ul><li>The two missing quantities, 3 decimals</li>
+<li>Units follow your inputs: SI gives m/s, m/s2, s and m</li></ul>
+
+    <h2>The math</h2>
+    <div class="formula">1 know v0,a,t: v = v0+at, d = v0t + at^2/2
+2 know v0,v,t: a = (v-v0)/t, d = (v0+v)t/2
+3 know v0,v,a: t = (v-v0)/a, d = (v^2-v0^2)/2a
+4 know v0,a,d: v = sqrt(v0^2+2ad)
+               t = (v-v0)/a</div>
+
+    <h2>Get it onto the calculator</h2>
+    <ol><li>Open <b>connectevo.ti.com</b> in Chrome (v143+) and accept the terms.</li>
+<li>Plug the calculator in with a USB-C <i>data</i> cable and switch it on.</li>
+<li>Click <b>CONNECT TO CALCULATOR</b>, pick your calculator, click <b>Connect</b>.</li>
+<li>Click <b>SEND TO CALCULATOR</b> and choose <code>KINEMAT.py</code>.</li>
+<li>Check the name reads <code>KINEMAT</code>, not <code>PYTHON01</code>. Send.</li></ol>
+
+    <h2>Run it</h2>
+    <p><kbd>apps</kbd> &rarr; <b>Python App</b> &rarr; highlight <code>KINEMAT</code> &rarr; <b>Run</b>.
+    Answer each prompt and press <kbd>enter</kbd>.</p>
+
+    <h2>Check it works</h2>
+    <div class="screen">KINEMATICS
+1 v0,a,t  2 v0,v,t
+3 v0,v,a  4 v0,a,d
+Mode: <span class="u">1</span>
+v0 (m/s): <span class="u">0</span>
+a (m/s2): <span class="u">9.81</span>
+t (s): <span class="u">3</span>
+v = 29.430
+d = 44.145</div>
+
+    <h2>Good to know</h2>
+    <ul><li>SI units in, SI units out. The program does no unit conversion, so do not mix km/h with m/s.</li>
+<li>NEGATIVES ARE MEANT TO BE USED: a = -5 for braking, a = -9.81 for downward gravity. They are not rejected.</li>
+<li>Modes 3 and 4 need a non-zero acceleration - at a = 0 the time is undefined. It re-asks rather than crashing.</li>
+<li>Mode 4 can be physically impossible: if v0^2 + 2ad &lt; 0 it prints "No real answer" instead of a math domain error.</li>
+<li>d is DISPLACEMENT, not distance travelled. An object that goes up and comes back has d = 0 but travelled a longer path.</li>
+<li>Decimal comma works: 9,81 is accepted.</li>
+<li>For free fall from rest use mode 1 with v0 = 0 and a = 9.81.</li></ul>
+
+    <div class="note">Mode does not matter. KINEMAT only does arithmetic and one square root - there is no trigonometry in it, so the DEGREE / RADIAN setting has no effect. (If you extend it to projectiles with launch angles, you would need radians() on the angle, because Python's math module is always in radians regardless of the MODE screen.)</div>
+
+  </div>
+  <div class="col">
+
+    <h2>Source code &mdash; KINEMAT.py</h2>
+    <pre># KINEMAT -- constant-acceleration motion: know 3, get the other 2
+# TI-84 Evo / Evo-T / CE Python / 83 Premium CE Python
+#
+# Numeric output only. No CAS. Mode does not matter -- arithmetic only,
+# no trig. SI units throughout: m/s, m/s^2, s, m.
+# Negative values are legal: use them for deceleration or downward motion.
+
+from math import *
+
+
+def getnum(msg):
+    while True:
+        s = input(msg)
+        if "," in s and "(" not in s:
+            s = s.replace(",", ".")
+        try:
+            return float(eval(s))
+        except:
+            print("Not a number")
+
+
+def getnonzero(msg):
+    while True:
+        v = getnum(msg)
+        if v != 0:
+            return v
+        print("Cannot be 0 here")
+
+
+print("KINEMATICS")
+print("1 v0,a,t  2 v0,v,t")
+print("3 v0,v,a  4 v0,a,d")
+
+while True:
+    m = int(getnum("Mode: "))
+    if m in (1, 2, 3, 4):
+        break
+    print("Pick 1 to 4")
+
+v0 = getnum("v0 (m/s): ")
+
+if m == 1:
+    a = getnum("a (m/s2): ")
+    t = getnum("t (s): ")
+    print("v = {:.3f}".format(v0 + a * t))
+    print("d = {:.3f}".format(v0 * t + a * t * t / 2))
+
+elif m == 2:
+    v = getnum("v (m/s): ")
+    t = getnonzero("t (s): ")
+    print("a = {:.3f}".format((v - v0) / t))
+    print("d = {:.3f}".format((v0 + v) * t / 2))
+
+elif m == 3:
+    v = getnum("v (m/s): ")
+    a = getnonzero("a (m/s2): ")
+    print("t = {:.3f}".format((v - v0) / a))
+    print("d = {:.3f}".format((v * v - v0 * v0) / (2 * a)))
+
+else:
+    a = getnonzero("a (m/s2): ")
+    d = getnum("d (m): ")
+    q = v0 * v0 + 2 * a * d
+    if q &lt; 0:
+        print("No real answer")
+        print("v0^2+2ad &lt; 0")
+    else:
+        v = sqrt(q)
+        print("v = {:.3f}".format(v))
+        print("t = {:.3f}".format((v - v0) / a))
+</pre>
+
+  </div>
+</div>
+
+<footer>
+  <span>ti84-evo-scripter - verified on 8 test cases before release</span>
+  <span>Numeric output only &middot; no CAS</span>
+</footer>
+
+</body>
+</html>

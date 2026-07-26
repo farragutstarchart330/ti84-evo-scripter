@@ -1,0 +1,47 @@
+{
+  "program": "QUADRT.py",
+  "reference": "Expected values cross-checked against the alternate root form 2c/(-b-sqrt(D)) and a residual check a*x^2+b*x+c ~ 0.",
+  "cases": [
+    {
+      "name": "two real roots (x-3)(x+2)",
+      "inputs": ["1", "-1", "-6"],
+      "expect": ["D = 25.0000", "vertex x = 0.5000", "2 real roots",
+                 "x1 = 3.0000", "x2 = -2.0000"],
+      "reject": ["Traceback"]
+    },
+    {
+      "name": "two real roots, a != 1",
+      "inputs": ["2", "5", "-3"],
+      "expect": ["D = 49.0000", "x1 = 0.5000", "x2 = -3.0000"]
+    },
+    {
+      "name": "repeated root (x-2)^2",
+      "inputs": ["1", "-4", "4"],
+      "expect": ["D = 0.0000", "1 repeated root", "x = 2.0000"],
+      "reject": ["2 real roots"]
+    },
+    {
+      "name": "no real roots, x^2+1",
+      "inputs": ["1", "0", "1"],
+      "expect": ["D = -4.0000", "No real roots", "re = 0.0000",
+                 "im = +/-1.0000"]
+    },
+    {
+      "name": "no real roots, 3x^2+2x+5",
+      "inputs": ["3", "2", "5"],
+      "expect": ["D = -56.0000", "re = -0.3333", "im = +/-1.2472"]
+    },
+    {
+      "name": "edge: a=0 is rejected then re-prompted",
+      "inputs": ["0", "1", "-1", "-6"],
+      "expect": ["a cannot be 0", "D = 25.0000", "x1 = 3.0000"],
+      "reject": ["Traceback", "ZeroDivisionError"]
+    },
+    {
+      "name": "edge: decimal comma input",
+      "inputs": ["1", "-1,5", "0,5"],
+      "expect": ["D = 0.2500", "x1 = 1.0000", "x2 = 0.5000"],
+      "reject": ["Not a number"]
+    }
+  ]
+}

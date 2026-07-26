@@ -1,0 +1,47 @@
+{
+  "program": "COMPINT.py",
+  "reference": "Every future value cross-checked against an explicit period-by-period accumulation loop, agreeing to 1e-9.",
+  "cases": [
+    {
+      "name": "lump sum 1000 at 5% monthly for 10 years",
+      "inputs": ["1", "1000", "5", "12", "10"],
+      "expect": ["FV    = 1647.01", "Grown = 647.01"],
+      "reject": ["Traceback"]
+    },
+    {
+      "name": "lump sum 500 at 3% annual for 5 years",
+      "inputs": ["1", "500", "3", "1", "5"],
+      "expect": ["FV    = 579.64", "Grown = 79.64"]
+    },
+    {
+      "name": "monthly deposits 200 at 6% for 5 years",
+      "inputs": ["2", "200", "6", "5"],
+      "expect": ["FV    = 13954.01", "Paid  = 12000.00",
+                 "Grown = 1954.01"]
+    },
+    {
+      "name": "edge: zero rate annuity (formula would divide by zero)",
+      "inputs": ["2", "100", "0", "2"],
+      "expect": ["FV    = 2400.00", "Paid  = 2400.00", "Grown = 0.00"],
+      "reject": ["ZeroDivisionError", "Traceback"]
+    },
+    {
+      "name": "edge: zero years returns the principal untouched",
+      "inputs": ["1", "1000", "5", "12", "0"],
+      "expect": ["FV    = 1000.00", "Grown = 0.00"],
+      "reject": ["Traceback"]
+    },
+    {
+      "name": "edge: negatives and zero compounds re-prompted",
+      "inputs": ["1", "-50", "1000", "5", "0", "12", "10"],
+      "expect": ["Cannot be negative", "Must be > 0", "FV    = 1647.01"],
+      "reject": ["Traceback"]
+    },
+    {
+      "name": "edge: decimal comma on the amount",
+      "inputs": ["1", "1000,00", "5", "12", "10"],
+      "expect": ["FV    = 1647.01"],
+      "reject": ["Not a number"]
+    }
+  ]
+}

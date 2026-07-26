@@ -1,0 +1,38 @@
+{
+  "program": "TIPCALC.py",
+  "cases": [
+    {
+      "name": "typical restaurant bill",
+      "inputs": ["48.50", "18"],
+      "expect": ["Tip:   8.73", "Total: 57.23"],
+      "reject": ["Traceback", "Not a number"]
+    },
+    {
+      "name": "round numbers",
+      "inputs": ["100", "15"],
+      "expect": ["Tip:   15.00", "Total: 115.00"]
+    },
+    {
+      "name": "fractional percent, large bill",
+      "inputs": ["1234.56", "7.5"],
+      "expect": ["Tip:   92.59", "Total: 1327.15"]
+    },
+    {
+      "name": "edge: zero bill",
+      "inputs": ["0", "20"],
+      "expect": ["Tip:   0.00", "Total: 0.00"],
+      "reject": ["Traceback"]
+    },
+    {
+      "name": "edge: expression input and bad input recovery",
+      "inputs": ["forty", "40+8.50", "18"],
+      "expect": ["Not a number", "Tip:   8.73", "Total: 57.23"]
+    },
+    {
+      "name": "edge: European decimal comma",
+      "inputs": ["48,50", "18"],
+      "expect": ["Tip:   8.73", "Total: 57.23"],
+      "reject": ["Not a number"]
+    }
+  ]
+}
