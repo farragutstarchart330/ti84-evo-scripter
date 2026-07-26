@@ -8,7 +8,14 @@ versioning follows [SemVer](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- `NOTICE` — trademark attribution for Texas Instruments, Adafruit, ACT and the
+  College Board, moved out of `LICENSE`.
+
 ### Changed
+
+- `LICENSE` is now the unmodified MIT text. The appended trademark notice broke
+  GitHub's license detection, so the repository sidebar reported no license while
+  the README badge claimed MIT.
 
 ### Fixed
 

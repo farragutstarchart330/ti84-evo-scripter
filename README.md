@@ -351,3 +351,7 @@ Three facts worth internalising:
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+Texas Instruments, TI-84, TI Connect and related product names are trademarks of
+Texas Instruments Incorporated. This project is independent and not affiliated
+with, endorsed by, or sponsored by TI. See [NOTICE](NOTICE).

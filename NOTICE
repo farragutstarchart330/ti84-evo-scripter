@@ -1,0 +1,23 @@
+Trademark notice
+================
+
+Texas Instruments, TI-84, TI-84 Plus, TI-84 Plus CE, TI-84 Plus CE-T,
+TI-83 Premium CE, TI-82 Advanced, TI-84 Evo, TI-84 Evo-T, TI Connect,
+TI Connect CE, TI Connect Evo, TI-SmartView, TI-Innovator and TI-Nspire are
+trademarks of Texas Instruments Incorporated.
+
+This project is independent and is not affiliated with, endorsed by, sponsored
+by, or otherwise connected to Texas Instruments Incorporated. Product names are
+used only to identify the hardware the generated programs target.
+
+CircuitPython is a trademark of Adafruit Industries. MicroPython is a trademark
+of Damien P. George.
+
+ACT is a registered trademark of ACT, Inc. SAT and AP are registered trademarks
+of the College Board. Statements in this repository about calculator policies
+summarise those organisations' published rules and are not authoritative; see
+references/exam-legality.md for the caveats and check the current official
+policy before relying on it for an exam.
+
+Licensing of this project's own code and documentation is stated in LICENSE
+(MIT). This notice does not modify those terms.
